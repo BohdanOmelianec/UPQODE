@@ -156,3 +156,49 @@ btnPrev.addEventListener('click', () => {
         }
     }
 });
+
+//Google map
+class Cities {
+    constructor(name, lat, lng) {
+        this.name = name;
+        this.lat = lat;
+        this.lng = lng;
+    }
+}
+let LS = new Cities('Los Angeles', 34.07317662164779, -118.2587458736771);
+let NY = new Cities('New York', 40.71661427257017, -74.01055114779739);
+let Bos = new Cities('Boston', 42.49787814535219, -71.11844648970916);
+let Det = new Cities('Detroit', 42.42078366690694, -83.05928666065954);
+
+
+let map;
+
+function initMap(x = LS.lat, y = LS.lng) {
+    let coord = { lat: x, lng: y };
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: coord,
+    zoom: 9,
+  });
+  new google.maps.Marker({
+    position: coord,
+    map
+  });
+}
+
+const ls = document.querySelector('.adress_item1');
+const ny = document.querySelector('.adress_item2');
+const bos = document.querySelector('.adress_item3');
+const det = document.querySelector('.adress_item4');
+
+ls.addEventListener('click', () => {
+    initMap(LS.lat, LS.lng);
+});
+ny.addEventListener('click', () => {
+    initMap(NY.lat, NY.lng);
+});
+bos.addEventListener('click', () => {
+    initMap(Bos.lat, Bos.lng);
+});
+det.addEventListener('click', () => {
+    initMap(Det.lat, Det.lng);
+});
